@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | Everest Dental</title>
+  <meta name="description" content="Everest Dental - simple, caring dental health services.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main">
+      <a href="index.html" class="brand" aria-label="Everest Dental home">
+        <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5c-3-2.5-9-2-10 4-.8 5 1.5 8 2.5 12 .8 3.200 1.800 6 3.500 6 2 0 1.800-5 4-5s2 5 4 5c1.700 0 2.700-2.800 3.500-6 1-4 3.300-7 2.500-12-1-6-7-6.500-10-4z" fill="currentColor"/></svg>
+        <span>Everest Dental</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+        <li><a href="index.html#appointment" class="btn btn-small">Book appointment</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Healthy teeth,<br>happy smiles.</h1>
+          <p class="lead">DaanthSeva brings friendly, affordable dental care close to home. Book a check-up in under a minute.</p>
+          <div class="hero-actions">
+            <a href="#appointment" class="btn">Book appointment</a>
+            <a href="services.html" class="btn btn-ghost">See our services</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 320 320">
+            <circle cx="160" cy="160" r="150" fill="#D6EFE8"/>
+            <path d="M160 70c-30-24-86-18-94 40-7 48 14 76 23 114 7 30 17 54 33 54 19 0 17-46 38-46s19 46 38 46c16 0 26-24 33-54 9-38 30-66 23-114-8-58-64-64-94-40z" fill="#fff" stroke="#0F5257" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M118 112c8-8 20-10 30-6" fill="none" stroke="#9AD5C8" stroke-width="8" stroke-linecap="round"/>
+            <g fill="#FF7A66"><path d="M262 78l5 13 13 5-13 5-5 13-5-13-13-5 13-5z"/><path d="M62 236l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features">
+      <div class="container">
+        <h2>Why families choose Everest Dental</h2>
+        <p class="section-intro">Dental care should feel calm and clear. Here is what you can expect when you visit.</p>
+        <div class="feature-grid">
+          <article class="feature">
+            <h3>Gentle dentists</h3>
+            <p>Patient, soft-spoken doctors who explain every step before they start.</p>
+          </article>
+          <article class="feature">
+            <h3>Clear pricing</h3>
+            <p>You know the cost before treatment begins. No surprise charges.</p>
+          </article>
+          <article class="feature">
+            <h3>Clean and safe</h3>
+            <p>Sterilised tools and a spotless clinic, checked every single day.</p>
+          </article>
+          <article class="feature">
+            <h3>Quick booking</h3>
+            <p>Pick a date and time online. We confirm by phone the same day.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section section-tint" id="testimonials">
+      <div class="container">
+        <h2>What our patients say</h2>
+        <div class="testimonial-grid">
+          <figure class="testimonial">
+            <blockquote>I was scared of dentists for years. The team here made my root canal painless and stress free.</blockquote>
+            <figcaption>Anita Sharma, Darbhanga</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>Booked online at night, got a call next morning. My kids actually enjoy their check-ups now.</blockquote>
+            <figcaption>Rakesh Verma, Muzzaffarpur</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>Honest advice and fair prices. They told me what I needed and nothing extra.</blockquote>
+            <figcaption>Pooja Singh, Madhubani</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Appointment form + list -->
+    <section class="section" id="appointment">
+      <div class="container">
+        <h2>Book an appointment</h2>
+        <p class="section-intro">Fill in your details. Your booking appears in the list below straight away.</p>
+
+        <div class="appointment-layout">
+          <form id="appointmentForm" class="card form" novalidate>
+            <div class="field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+              <small class="error" data-for="name"></small>
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="10-digit mobile number" autocomplete="tel" required>
+              <small class="error" data-for="phone"></small>
+            </div>
+            <div class="field">
+              <label for="service">Service</label>
+              <select id="service" name="service" required>
+                <option value="">Choose a service</option>
+                <option>General check-up</option>
+                <option>Teeth cleaning</option>
+                <option>Cavity filling</option>
+                <option>Root canal</option>
+                <option>Braces consultation</option>
+                <option>Teeth whitening</option>
+              </select>
+              <small class="error" data-for="service"></small>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+                <small class="error" data-for="date"></small>
+              </div>
+              <div class="field">
+                <label for="time">Time</label>
+                <select id="time" name="time" required>
+                  <option value="">Choose a time</option>
+                  <option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+                  <option>12:00 PM</option><option>02:00 PM</option><option>03:00 PM</option>
+                  <option>04:00 PM</option><option>05:00 PM</option><option>06:00 PM</option>
+                </select>
+                <small class="error" data-for="time"></small>
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">Tell us about your problem (optional)</label>
+              <textarea id="message" name="message" rows="3" maxlength="300" placeholder="For example: pain in the lower left tooth since two days"></textarea>
+            </div>
+            <button type="submit" class="btn btn-block">Book appointment</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="appointments" id="appointments">
+            <div class="appointments-head">
+              <h3>Your appointments</h3>
+              <button type="button" class="link-btn" id="clearAll" hidden>Clear all</button>
+            </div>
+            <p class="empty" id="emptyState">No appointments yet. Book your first visit using the form.</p>
+            <ul class="appointment-list" id="appointmentList"></ul>
+            <p class="note">Appointments are saved in this browser only.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand">Everest Dental</p>
+        <p>Simple, gentle dental care for the whole family.</p>
+      </div>
+      <div>
+        <p class="footer-title">Pages</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Visit us</p>
+        <p>GM Road, Darbhanga, Bihar</p>
+        <p>Mon to Sat, 9:00 am to 7:00 pm</p>
+        <p>+91 11111 11111</p>
+      </div>
+    </div>
+    <p class="footer-bottom container">&copy; <span id="year">2026</span> Everest Dental. All rights reserved.</p>
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="js/appointments.js"></script>
+</body>
+</html>

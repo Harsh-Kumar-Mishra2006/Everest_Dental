@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact us | Everest Dental</title>
+  <meta name="description" content="Everest Dental - simple, caring dental health services.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main">
+      <a href="index.html" class="brand" aria-label="Everest Dental home">
+        <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5c-3-2.5-9-2-10 4-.8 5 1.5 8 2.5 12 .8 3.200 1.800 6 3.500 6 2 0 1.800-5 4-5s2 5 4 5c1.700 0 2.700-2.800 3.500-6 1-4 3.300-7 2.500-12-1-6-7-6.500-10-4z" fill="currentColor"/></svg>
+        <span>Everest Dental</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active" aria-current="page">Contact us</a></li>
+        <li><a href="index.html#appointment" class="btn btn-small">Book appointment</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+
+    <section class="page-banner">
+      <div class="container">
+        <h1>Contact us</h1>
+        <p class="lead">Questions, feedback or an emergency? Reach out and we will reply quickly.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container two-col">
+        <div>
+          <h2>Clinic details</h2>
+          <ul class="contact-list">
+            <li><strong>Address</strong><span>GM Road, Darbhanga, Bihar</span></li>
+            <li><strong>Phone</strong><span>+91 11111 11111</span></li>
+            <li><strong>Email</strong><span>hello@everestdental.example</span></li>
+            <li><strong>Hours</strong><span>Mon to Sat, 9:00 am to 7:00 pm</span></li>
+          </ul>
+
+          <div class="map-wrap" style="margin-top: 1.5rem;">
+        <iframe 
+        title="Everest Dental location on Google Maps"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.2042368515786!2d85.90013427520908!3d26.15747717710537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39edb83a592a7aff%3A0xd9908532cdf630f7!2sGM%20Road%2C%20Kathalbari%2C%20Darbhanga%2C%20Bihar%20846004!5e0!3m2!1sen!2sin!4v1791528747023!5m2!1sen!2sin" 
+        width="100%" height="280" style="border:0;"
+        loading="lazy" allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+        </div>
+        <form id="contactForm" class="card form" novalidate>
+          <div class="field">
+            <label for="cname">Your name</label>
+            <input type="text" id="cname" required>
+            <small class="error" data-for="cname"></small>
+          </div>
+          <div class="field">
+            <label for="cemail">Email</label>
+            <input type="email" id="cemail" required>
+            <small class="error" data-for="cemail"></small>
+          </div>
+          <div class="field">
+            <label for="cmessage">Message</label>
+            <textarea id="cmessage" rows="4" required></textarea>
+            <small class="error" data-for="cmessage"></small>
+          </div>
+          <button type="submit" class="btn btn-block">Send message</button>
+          <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand">Everest Dental</p>
+        <p>Simple, gentle dental care for the whole family.</p>
+      </div>
+      <div>
+        <p class="footer-title">Pages</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Visit us</p>
+        <p>GM Road, Darbhanga, Bihar</p>
+        <p>Mon to Sat, 9:00 am to 7:00 pm</p>
+        <p>+91 11111 11111</p>
+      </div>
+    </div>
+    <p class="footer-bottom container">&copy; <span id="year">2026</span> Everest Dental. All rights reserved.</p>
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>
