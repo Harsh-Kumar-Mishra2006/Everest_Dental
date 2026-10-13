@@ -9,18 +9,123 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- INLINE STYLES FOR HERO ANIMATIONS & GLASSY EFFECT -->
+  <style>
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 3rem;
+    }
+    
+    .hero-text {
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Glassy Visual Container */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem; /* Space between doctor and banner */
+      animation: float 6s ease-in-out infinite;
+      perspective: 1000px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Clear Banner with Glassy Effect */
+    .hero-banner-img {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      box-shadow: 
+        0 20px 40px rgba(15, 82, 87, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    /* Doctor Photo - Side by Side with Glassy Float */
+    .hero-doctor-img {
+      width: 160px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 4px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 15px 30px rgba(15, 82, 87, 0.2);
+      transition: transform 0.3s ease;
+      animation: floatDoctor 5s ease-in-out infinite;
+      /* Slight offset for depth */
+      margin-top: -2rem; 
+    }
+
+    @keyframes floatDoctor {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    /* Shimmering Glass Reflection Overlay for Banner */
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: shimmer 4s infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { margin-top: 2rem; flex-direction: column; }
+      .hero-doctor-img { width: 120px; height: 150px; margin-top: 0; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <nav class="navbar container" aria-label="Main">
       <a href="index.html" class="brand" aria-label="Everest Dental home">
-        <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5c-3-2.5-9-2-10 4-.8 5 1.5 8 2.5 12 .8 3.200 1.800 6 3.500 6 2 0 1.800-5 4-5s2 5 4 5c1.700 0 2.700-2.800 3.500-6 1-4 3.300-7 2.500-12-1-6-7-6.500-10-4z" fill="currentColor"/></svg>
+        <!-- UPDATED LOGO -->
+        <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" class="brand-icon" style="width: 40px; height: 40px; object-fit: contain;">
         <span>Everest Dental</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-        <li><a href="about.html">About us</a></li>
+        <!-- <li><a href="about.html">About us</a></li> -->
         <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact us</a></li>
         <li><a href="index.html#appointment" class="btn btn-small">Book appointment</a></li>
@@ -34,19 +139,21 @@
       <div class="container hero-grid">
         <div class="hero-text">
           <h1>Healthy teeth,<br>happy smiles.</h1>
-          <p class="lead">DaanthSeva brings friendly, affordable dental care close to home. Book a check-up in under a minute.</p>
+          <p class="lead">Everest Dental brings friendly, affordable dental care 
+            Book a check-up in under a minute.</p>
           <div class="hero-actions">
             <a href="#appointment" class="btn">Book appointment</a>
             <a href="services.html" class="btn btn-ghost">See our services</a>
           </div>
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <svg viewBox="0 0 320 320">
-            <circle cx="160" cy="160" r="150" fill="#D6EFE8"/>
-            <path d="M160 70c-30-24-86-18-94 40-7 48 14 76 23 114 7 30 17 54 33 54 19 0 17-46 38-46s19 46 38 46c16 0 26-24 33-54 9-38 30-66 23-114-8-58-64-64-94-40z" fill="#fff" stroke="#0F5257" stroke-width="6" stroke-linejoin="round"/>
-            <path d="M118 112c8-8 20-10 30-6" fill="none" stroke="#9AD5C8" stroke-width="8" stroke-linecap="round"/>
-            <g fill="#FF7A66"><path d="M262 78l5 13 13 5-13 5-5 13-5-13-13-5 13-5z"/><path d="M62 236l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
-          </svg>
+        
+        <!-- CLEAN GLASSY VISUAL SECTION WITH DOCTOR -->
+        <div class="hero-visual">
+          <!-- Doctor Photo (Side-by-side) -->
+          <img src="./IMG-20261011-WA0050.jpg" alt="Dr. Manoj Kr. Upadhyay" class="hero-doctor-img">
+          
+          <!-- Banner Image (Completely clear) -->
+          <img src="./IMG-20261011-WA0051.jpg" alt="Everest Dental Banner" class="hero-banner-img">
         </div>
       </div>
     </section>
@@ -84,15 +191,15 @@
         <div class="testimonial-grid">
           <figure class="testimonial">
             <blockquote>I was scared of dentists for years. The team here made my root canal painless and stress free.</blockquote>
-            <figcaption>Anita Sharma, Darbhanga</figcaption>
+            <figcaption>Anita Sharma, Birgunj</figcaption>
           </figure>
           <figure class="testimonial">
             <blockquote>Booked online at night, got a call next morning. My kids actually enjoy their check-ups now.</blockquote>
-            <figcaption>Rakesh Verma, Muzzaffarpur</figcaption>
+            <figcaption>Rakesh Verma, Parsa</figcaption>
           </figure>
           <figure class="testimonial">
             <blockquote>Honest advice and fair prices. They told me what I needed and nothing extra.</blockquote>
-            <figcaption>Pooja Singh, Madhubani</figcaption>
+            <figcaption>Pooja Singh, Birgunj</figcaption>
           </figure>
         </div>
       </div>
@@ -171,23 +278,29 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <p class="footer-brand">Everest Dental</p>
+        <div class="footer-brand-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <!-- UPDATED LOGO -->
+          <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" style="width: 40px; height: 40px; object-fit: contain;">
+          <p class="footer-brand" style="margin: 0;">Everest Dental</p>
+        </div>
         <p>Simple, gentle dental care for the whole family.</p>
       </div>
       <div>
         <p class="footer-title">Pages</p>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About us</a></li>
+          <!-- <li><a href="about.html">About us</a></li> -->
           <li><a href="services.html">Services</a></li>
           <li><a href="contact.html">Contact us</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-title">Visit us</p>
-        <p>GM Road, Darbhanga, Bihar</p>
+        <!-- UPDATED ADDRESS & CONTACT -->
+        <p>Railway Road, Amar Chowk, Near Laxmi Narayan Party Palace, Birgunj-02, Parsa</p>
         <p>Mon to Sat, 9:00 am to 7:00 pm</p>
-        <p>+91 11111 11111</p>
+        <p>+977-51-527343</p>
+        <p>sophiabhandari118@gmail.com</p>
       </div>
     </div>
     <p class="footer-bottom container">&copy; <span id="year">2026</span> Everest Dental. All rights reserved.</p>
