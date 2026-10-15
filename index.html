@@ -7,9 +7,7 @@
   <meta name="description" content="Everest Dental - simple, caring dental health services in Birgunj. Book your appointment today.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Beautiful, modern font pairing: Fraunces (display) + Inter (body) -->
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* ===== GLOBAL RESET & DESIGN TOKENS ===== */
@@ -20,9 +18,9 @@
     }
 
     :root {
-      --primary: #0b4d5c;        /* deep teal */
+      --primary: #0b4d5c;
       --primary-light: #1d6e7e;
-      --accent: #e8f4f8;         /* soft sky */
+      --accent: #e8f4f8;
       --text-dark: #1e2b32;
       --text-soft: #3c4b54;
       --bg-white: #ffffff;
@@ -242,10 +240,10 @@
       margin-top: 0.5rem;
     }
 
-    /* ===== HERO SECTION ===== */
+    /* ===== UNIFIED HERO SECTION ===== */
     .hero {
       position: relative;
-      padding: 4rem 0 5rem;
+      padding: 3rem 0 4rem;
       overflow: hidden;
       background: linear-gradient(135deg, #f0f7fa 0%, #e3f0f5 100%);
     }
@@ -285,13 +283,15 @@
       66% { transform: translate(-20px, 20px) scale(0.95); }
     }
 
-    .hero-grid {
+    /* Hero Top: Text + Banner side by side on laptop */
+    .hero-top {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.1fr;
       align-items: center;
-      gap: 4rem;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
     }
 
     .hero-text {
@@ -304,7 +304,7 @@
     }
 
     .hero-text h1 {
-      font-size: 3.2rem;
+      font-size: 3rem;
       color: var(--primary);
       line-height: 1.1;
       margin-bottom: 1.2rem;
@@ -312,10 +312,10 @@
     }
 
     .hero-text .lead {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--text-soft);
       margin-bottom: 2rem;
-      max-width: 540px;
+      max-width: 520px;
       line-height: 1.7;
     }
 
@@ -325,100 +325,63 @@
       flex-wrap: wrap;
     }
 
-    /* Hero Visual - Full Banner Clear + Supporting Images */
-    .hero-visual {
-      position: relative;
-      height: 520px;
-      animation: fadeInUp 0.9s ease-out 0.2s both;
-    }
-
-    /* The main banner - clear and full */
-    .hero-main-banner {
-      position: absolute;
-      top: 5%;
-      left: 0;
-      width: 75%;
-      height: 60%;
+    /* Main Banner - clear and full, sits to the right of text */
+    .hero-banner {
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
       border: 5px solid white;
-      z-index: 3;
-      animation: floatIn 0.8s ease forwards;
-      opacity: 0;
-      animation-delay: 0.1s;
+      animation: fadeInUp 1s ease-out 0.2s both;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
-    .hero-main-banner:hover {
-      transform: scale(1.03) translateY(-5px);
+    .hero-banner:hover {
+      transform: translateY(-5px);
       box-shadow: 0 30px 60px rgba(11, 77, 92, 0.2);
-      z-index: 10;
     }
 
-    .hero-main-banner img {
+    .hero-banner img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
+      object-fit: contain;
     }
 
-    /* Supporting smaller images */
-    .hero-support-item {
-      position: absolute;
+    /* Supporting Images Row - fills the gap below */
+    .hero-supporting {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .hero-supporting-item {
       border-radius: var(--radius-sm);
       overflow: hidden;
       box-shadow: var(--shadow-md);
-      border: 3px solid white;
-      z-index: 2;
-      animation: floatIn 0.8s ease forwards;
-      opacity: 0;
+      border: 4px solid white;
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      aspect-ratio: 16/10;
     }
 
-    .hero-support-item:hover {
-      transform: scale(1.08) translateY(-6px);
+    .hero-supporting-item:hover {
+      transform: scale(1.04) translateY(-6px);
       box-shadow: var(--shadow-lg);
       z-index: 10;
     }
 
-    .hero-support-item img {
+    .hero-supporting-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
     }
 
-    .hero-support-item.support-1 {
-      top: 0;
-      right: 0;
-      width: 40%;
-      height: 35%;
-      animation-delay: 0.3s;
-      z-index: 4;
-    }
-
-    .hero-support-item.support-2 {
-      bottom: 0;
-      left: 10%;
-      width: 45%;
-      height: 35%;
-      animation-delay: 0.45s;
-      z-index: 1;
-    }
-
-    .hero-support-item.support-3 {
-      bottom: 5%;
-      right: 5%;
-      width: 35%;
-      height: 30%;
-      animation-delay: 0.6s;
-      z-index: 2;
-    }
-
-    @keyframes floatIn {
-      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+    .hero-supporting-item:hover img {
+      transform: scale(1.08);
     }
 
     /* ===== SECTIONS ===== */
@@ -843,24 +806,19 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .hero-grid {
-        gap: 3rem;
-      }
       .hero-text h1 {
-        font-size: 2.6rem;
+        font-size: 2.5rem;
       }
-      .hero-visual {
-        height: 450px;
-      }
-      .appointment-layout {
-        gap: 2rem;
+      .hero-top {
+        gap: 2.5rem;
       }
     }
 
     @media (max-width: 900px) {
-      .hero-grid {
+      .hero-top {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
       }
 
       .hero-text .lead {
@@ -872,10 +830,14 @@
         justify-content: center;
       }
 
-      .hero-visual {
-        max-width: 500px;
+      .hero-banner {
+        max-width: 600px;
         margin: 0 auto;
-        height: 400px;
+      }
+
+      .hero-supporting {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
       }
 
       .appointment-layout {
@@ -927,10 +889,6 @@
         gap: 2rem;
       }
 
-      .hero-visual {
-        height: 350px;
-      }
-
       .field-row {
         grid-template-columns: 1fr;
       }
@@ -941,6 +899,10 @@
 
       .testimonial-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-supporting {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -963,10 +925,6 @@
         font-size: 1rem;
       }
 
-      .hero-visual {
-        height: 300px;
-      }
-
       .feature-grid {
         grid-template-columns: 1fr;
       }
@@ -982,6 +940,14 @@
       .card,
       .appointments {
         padding: 1.5rem;
+      }
+
+      .hero-supporting {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 2rem 0 3rem;
       }
     }
   </style>
@@ -1008,35 +974,39 @@
 
   <main>
 
-    <!-- ===== HERO ===== -->
+    <!-- ===== UNIFIED HERO ===== -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <h1>Healthy teeth,<br>happy smiles.</h1>
-          <p class="lead">Everest Dental brings friendly, affordable dental care to Birgunj. From routine check-ups to advanced treatments — all under one roof, with a gentle touch.</p>
-          <div class="hero-actions">
-            <a href="#appointment" class="btn">Book appointment</a>
-            <a href="services.html" class="btn btn-ghost">See our services</a>
+      <div class="container">
+
+        <!-- Top: Text + Full Banner -->
+        <div class="hero-top">
+          <div class="hero-text">
+            <h1>Healthy teeth,<br>happy smiles.</h1>
+            <p class="lead">Everest Dental brings friendly, affordable dental care to Birgunj. From routine check-ups to advanced treatments — all under one roof, with a gentle touch.</p>
+            <div class="hero-actions">
+              <a href="#appointment" class="btn">Book appointment</a>
+              <a href="services.html" class="btn btn-ghost">See our services</a>
+            </div>
+          </div>
+
+          <div class="hero-banner">
+            <img src="./IMG-20261011-WA0051.jpg" alt="Everest Dental Service Center Pvt Ltd — Railway Road, Amar Chowk, Birgunj-02, Parsa">
           </div>
         </div>
 
-        <!-- Full Clear Banner + Supporting Images -->
-        <div class="hero-visual">
-          <!-- Main Banner - Clear and Full -->
-          <div class="hero-main-banner">
-            <img src="./IMG-20261011-WA0051.jpg" alt="Everest Dental Clinic Banner">
-          </div>
-          <!-- Supporting Images -->
-          <div class="hero-support-item support-1">
+        <!-- Bottom: Supporting Images Row -->
+        <div class="hero-supporting">
+          <div class="hero-supporting-item">
             <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" alt="Dentist examining patient">
           </div>
-          <div class="hero-support-item support-2">
+          <div class="hero-supporting-item">
             <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop" alt="Dental cleaning">
           </div>
-          <div class="hero-support-item support-3">
+          <div class="hero-supporting-item">
             <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop" alt="Root canal treatment">
           </div>
         </div>
+
       </div>
     </section>
 
@@ -1196,7 +1166,6 @@
   <script src="js/main.js"></script>
   <script src="js/appointments.js"></script>
   <script>
-    // Simple mobile nav toggle
     document.addEventListener('DOMContentLoaded', function() {
       const toggle = document.getElementById('navToggle');
       const navLinks = document.getElementById('navLinks');
