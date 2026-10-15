@@ -4,179 +4,1065 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home | Everest Dental Service Center Pvt Ltd</title>
-  <meta name="description" content="Everest Dental - simple, caring dental health services.">
+  <meta name="description" content="Everest Dental - simple, caring dental health services in Birgunj. Book your appointment today.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- INLINE STYLES FOR HERO ANIMATIONS & GLASSY EFFECT -->
+  <!-- Beautiful, modern font pairing: Fraunces (display) + Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 3rem;
-    }
-    
-    .hero-text {
-      animation: fadeIn 1s ease-out;
+    /* ===== GLOBAL RESET & DESIGN TOKENS ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+    :root {
+      --primary: #0b4d5c;        /* deep teal */
+      --primary-light: #1d6e7e;
+      --accent: #e8f4f8;         /* soft sky */
+      --text-dark: #1e2b32;
+      --text-soft: #3c4b54;
+      --bg-white: #ffffff;
+      --bg-light: #f9fcfd;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 28px rgba(0, 30, 40, 0.08);
+      --shadow-lg: 0 24px 48px rgba(11, 77, 92, 0.12);
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      font-size: 1rem;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    h1, h2, h3, .brand-name, .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ===== NAVBAR ===== */
+    .site-header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: var(--accent);
+      padding: 4px;
+      box-shadow: 0 4px 12px rgba(11, 77, 92, 0.1);
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.3;
+      max-width: 300px;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav-toggle:hover {
+      background: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      padding: 0.4rem 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .btn-small {
+      background: var(--primary);
+      color: white !important;
+      padding: 0.6rem 1.4rem !important;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 6px 16px rgba(11, 77, 92, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-small::after {
+      display: none;
+    }
+
+    .btn-small:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(11, 77, 92, 0.3);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 8px 18px rgba(11, 77, 92, 0.2);
+      border: none;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(11, 77, 92, 0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: none;
+    }
+
+    .btn-ghost:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-block {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      padding: 4rem 0 5rem;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f0f7fa 0%, #e3f0f5 100%);
+    }
+
+    /* Animated background patches */
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      z-index: 0;
+      animation: blobFloat 12s ease-in-out infinite;
+    }
+
+    .hero::before {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(29, 110, 126, 0.3) 0%, rgba(29, 110, 126, 0) 70%);
+      top: -150px;
+      right: -100px;
+    }
+
+    .hero::after {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(11, 77, 92, 0.2) 0%, rgba(11, 77, 92, 0) 70%);
+      bottom: -100px;
+      left: -100px;
+      animation-delay: -6s;
+    }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .hero-text {
+      animation: fadeInUp 0.9s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Glassy Visual Container */
+    .hero-text h1 {
+      font-size: 3.2rem;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-text .lead {
+      font-size: 1.2rem;
+      color: var(--text-soft);
+      margin-bottom: 2rem;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Hero Visual - Full Banner Clear + Supporting Images */
     .hero-visual {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem; /* Space between doctor and banner */
-      animation: float 6s ease-in-out infinite;
-      perspective: 1000px;
+      height: 520px;
+      animation: fadeInUp 0.9s ease-out 0.2s both;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
-    /* Clear Banner with Glassy Effect */
-    .hero-banner-img {
-      width: 100%;
-      max-width: 480px;
-      border-radius: 20px;
-      box-shadow: 
-        0 20px 40px rgba(15, 82, 87, 0.15),
-        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-      object-fit: cover;
-      display: block;
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-
-    /* Doctor Photo - Side by Side with Glassy Float */
-    .hero-doctor-img {
-      width: 160px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 4px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 15px 30px rgba(15, 82, 87, 0.2);
-      transition: transform 0.3s ease;
-      animation: floatDoctor 5s ease-in-out infinite;
-      /* Slight offset for depth */
-      margin-top: -2rem; 
-    }
-
-    @keyframes floatDoctor {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
-    }
-
-    /* Shimmering Glass Reflection Overlay for Banner */
-    .hero-visual::after {
-      content: '';
+    /* The main banner - clear and full */
+    .hero-main-banner {
       position: absolute;
-      top: 0;
+      top: 5%;
       left: 0;
+      width: 75%;
+      height: 60%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 5px solid white;
+      z-index: 3;
+      animation: floatIn 0.8s ease forwards;
+      opacity: 0;
+      animation-delay: 0.1s;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .hero-main-banner:hover {
+      transform: scale(1.03) translateY(-5px);
+      box-shadow: 0 30px 60px rgba(11, 77, 92, 0.2);
+      z-index: 10;
+    }
+
+    .hero-main-banner img {
       width: 100%;
       height: 100%;
-      border-radius: 20px;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.4) 50%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      animation: shimmer 4s infinite;
-      pointer-events: none;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Supporting smaller images */
+    .hero-support-item {
+      position: absolute;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 3px solid white;
+      z-index: 2;
+      animation: floatIn 0.8s ease forwards;
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    }
+
+    .hero-support-item:hover {
+      transform: scale(1.08) translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
+    }
+
+    .hero-support-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-support-item.support-1 {
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 35%;
+      animation-delay: 0.3s;
+      z-index: 4;
+    }
+
+    .hero-support-item.support-2 {
+      bottom: 0;
+      left: 10%;
+      width: 45%;
+      height: 35%;
+      animation-delay: 0.45s;
+      z-index: 1;
+    }
+
+    .hero-support-item.support-3 {
+      bottom: 5%;
+      right: 5%;
+      width: 35%;
+      height: 30%;
+      animation-delay: 0.6s;
       z-index: 2;
     }
 
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    @keyframes floatIn {
+      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Responsive adjustments */
+    /* ===== SECTIONS ===== */
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-tint {
+      background: var(--bg-light);
+    }
+
+    .section h2 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+
+    .section-intro {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* ===== FEATURE CARDS ===== */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature {
+      background: var(--bg-white);
+      padding: 2.2rem 1.8rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--primary-light);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-align: center;
+    }
+
+    .feature:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--accent);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1.2rem;
+    }
+
+    .feature h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .feature p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial {
+      background: var(--bg-white);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(11, 77, 92, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 6rem;
+      font-family: var(--font-display);
+      color: var(--accent);
+      opacity: 0.6;
+      line-height: 1;
+      z-index: 0;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial blockquote {
+      position: relative;
+      z-index: 1;
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .testimonial figcaption {
+      position: relative;
+      z-index: 1;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .testimonial figcaption::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--primary-light);
+      border-radius: 2px;
+    }
+
+    /* ===== APPOINTMENT SECTION ===== */
+    .appointment-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--bg-white);
+      border-radius: var(--radius-md);
+      padding: 2rem 2rem 1.8rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 77, 92, 0.08);
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      font-family: var(--font-body);
+      padding: 0.9rem 1.2rem;
+      border: 1.5px solid #d9e5ea;
+      border-radius: 60px;
+      font-size: 1rem;
+      background: var(--bg-light);
+      transition: all 0.2s;
+      outline: none;
+      resize: vertical;
+      color: var(--text-dark);
+    }
+
+    .field select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230b4d5c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      padding-right: 2.5rem;
+    }
+
+    .field textarea {
+      border-radius: 24px;
+      min-height: 100px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--primary-light);
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(11, 77, 92, 0.08);
+    }
+
+    .field .error {
+      font-size: 0.8rem;
+      color: #c0392b;
+      margin-top: 0.2rem;
+      padding-left: 0.8rem;
+    }
+
+    .form-status {
+      font-size: 0.95rem;
+      min-height: 1.5rem;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    /* Appointments list */
+    .appointments {
+      background: var(--bg-white);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 77, 92, 0.08);
+    }
+
+    .appointments-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .appointments-head h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      color: var(--primary-light);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: underline;
+      font-family: var(--font-body);
+    }
+
+    .empty {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      font-style: italic;
+      padding: 1rem 0;
+    }
+
+    .appointment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .appointment-item {
+      background: var(--bg-light);
+      border-left: 4px solid var(--primary-light);
+      padding: 1rem 1.2rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      animation: slideIn 0.4s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .appointment-item strong {
+      color: var(--primary);
+      font-size: 0.95rem;
+    }
+
+    .appointment-item small {
+      color: var(--text-soft);
+      font-size: 0.85rem;
+      display: block;
+    }
+
+    .appointment-item .remove-btn {
+      background: none;
+      border: none;
+      color: #c0392b;
+      cursor: pointer;
+      font-size: 1rem;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .appointment-item .remove-btn:hover {
+      opacity: 1;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: #8a9ba3;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: linear-gradient(145deg, #0a3f4b 0%, #0f4f5e 100%);
+      color: #d9eef5;
+      padding: 3.5rem 0 1.5rem;
+      margin-top: 2rem;
+      border-top: 4px solid var(--primary-light);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-wrap img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+    }
+
+    .site-footer p {
+      color: #b8d4dd;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: white;
+      font-size: 1.15rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 36px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .site-footer ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .site-footer li a {
+      color: #cfe2e9;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .site-footer li a:hover {
+      color: white;
+      transform: translateX(6px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.8rem;
+      font-size: 0.9rem;
+      color: #9bb8c4;
+      letter-spacing: 0.2px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        gap: 3rem;
+      }
+      .hero-text h1 {
+        font-size: 2.6rem;
+      }
+      .hero-visual {
+        height: 450px;
+      }
+      .appointment-layout {
+        gap: 2rem;
+      }
+    }
+
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; text-align: center; }
-      .hero-actions { justify-content: center; }
-      .hero-visual { margin-top: 2rem; flex-direction: column; }
-      .hero-doctor-img { width: 120px; height: 150px; margin-top: 0; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text .lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        max-width: 500px;
+        margin: 0 auto;
+        height: 400px;
+      }
+
+      .appointment-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .section h2 {
+        font-size: 1.9rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-wrap: wrap;
+        padding: 0.8rem 1.2rem;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2edf2;
+        margin-top: 0.5rem;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+        width: 100%;
+      }
+
+      .btn-small {
+        text-align: center;
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-visual {
+        height: 350px;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand span {
+        font-size: 0.9rem;
+        max-width: 180px;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-text .lead {
+        font-size: 1rem;
+      }
+
+      .hero-visual {
+        height: 300px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 3rem 0;
+      }
+
+      .section h2 {
+        font-size: 1.7rem;
+      }
+
+      .card,
+      .appointments {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <nav class="navbar container" aria-label="Main">
+    <nav class="navbar" aria-label="Main">
       <a href="index.html" class="brand" aria-label="Everest Dental home">
-        <!-- UPDATED LOGO -->
-        <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" class="brand-icon" style="width: 40px; height: 40px; object-fit: contain;">
+        <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" class="brand-icon">
         <span>Everest Dental Service Center Pvt Ltd</span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+        <i class="fas fa-bars" style="margin-right: 0.4rem;"></i> Menu
+      </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active" aria-current="page">Home</a></li>
         <li><a href="about.html">About us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="contact.html">Contact us</a></li>
-        <li><a href="index.html#appointment" class="btn btn-small">Book appointment</a></li>
+        <li><a href="#appointment" class="btn btn-small">Book appointment</a></li>
       </ul>
     </nav>
   </header>
+
   <main>
 
-    <!-- Hero -->
+    <!-- ===== HERO ===== -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-text">
           <h1>Healthy teeth,<br>happy smiles.</h1>
-          <p class="lead">Everest Dental brings friendly, affordable dental care 
-            Book a check-up in under a minute.</p>
+          <p class="lead">Everest Dental brings friendly, affordable dental care to Birgunj. From routine check-ups to advanced treatments — all under one roof, with a gentle touch.</p>
           <div class="hero-actions">
             <a href="#appointment" class="btn">Book appointment</a>
             <a href="services.html" class="btn btn-ghost">See our services</a>
           </div>
         </div>
-        
-        <!-- CLEAN GLASSY VISUAL SECTION WITH DOCTOR -->
+
+        <!-- Full Clear Banner + Supporting Images -->
         <div class="hero-visual">
-          <!-- Doctor Photo (Side-by-side) -->
-          <!-- <img src="./IMG-20261011-WA0050.jpg" alt="Dr. Manoj Kr. Upadhyay" class="hero-doctor-img"> -->
-          
-          <!-- Banner Image (Completely clear) -->
-          <img src="./IMG-20261011-WA0051.jpg" alt="Everest Dental Banner" class="hero-banner-img">
+          <!-- Main Banner - Clear and Full -->
+          <div class="hero-main-banner">
+            <img src="./IMG-20261011-WA0051.jpg" alt="Everest Dental Clinic Banner">
+          </div>
+          <!-- Supporting Images -->
+          <div class="hero-support-item support-1">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" alt="Dentist examining patient">
+          </div>
+          <div class="hero-support-item support-2">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop" alt="Dental cleaning">
+          </div>
+          <div class="hero-support-item support-3">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop" alt="Root canal treatment">
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
+    <!-- ===== FEATURES ===== -->
     <section class="section" id="features">
       <div class="container">
         <h2>Why families choose Everest Dental</h2>
-        <p class="section-intro">Dental care should feel calm and clear. Here is what you can expect when you visit.</p>
+        <p class="section-intro">Dental care should feel calm and clear. Here is what you can expect when you visit us.</p>
         <div class="feature-grid">
           <article class="feature">
+            <div class="feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
             <h3>Gentle dentists</h3>
             <p>Patient, soft-spoken doctors who explain every step before they start.</p>
           </article>
           <article class="feature">
+            <div class="feature-icon"><i class="fas fa-tag"></i></div>
             <h3>Clear pricing</h3>
             <p>You know the cost before treatment begins. No surprise charges.</p>
           </article>
           <article class="feature">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
             <h3>Clean and safe</h3>
             <p>Sterilised tools and a spotless clinic, checked every single day.</p>
           </article>
           <article class="feature">
+            <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
             <h3>Quick booking</h3>
             <p>Pick a date and time online. We confirm by phone the same day.</p>
           </article>
@@ -184,28 +1070,29 @@
       </div>
     </section>
 
-    <!-- Testimonials -->
+    <!-- ===== TESTIMONIALS ===== -->
     <section class="section section-tint" id="testimonials">
       <div class="container">
         <h2>What our patients say</h2>
+        <p class="section-intro">Real stories from families across Birgunj and Parsa.</p>
         <div class="testimonial-grid">
           <figure class="testimonial">
-            <blockquote>I was scared of dentists for years. The team here made my root canal painless and stress free.</blockquote>
+            <blockquote>I was scared of dentists for years. The team here made my root canal painless and stress free. Highly recommended!</blockquote>
             <figcaption>Anita Sharma, Birgunj</figcaption>
           </figure>
           <figure class="testimonial">
-            <blockquote>Booked online at night, got a call next morning. My kids actually enjoy their check-ups now.</blockquote>
+            <blockquote>Booked online at night, got a call next morning. My kids actually enjoy their check-ups now. Great with children.</blockquote>
             <figcaption>Rakesh Verma, Parsa</figcaption>
           </figure>
           <figure class="testimonial">
-            <blockquote>Honest advice and fair prices. They told me what I needed and nothing extra.</blockquote>
+            <blockquote>Honest advice and fair prices. They told me what I needed and nothing extra. That's rare and refreshing.</blockquote>
             <figcaption>Pooja Singh, Birgunj</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- Appointment form + list -->
+    <!-- ===== APPOINTMENT ===== -->
     <section class="section" id="appointment">
       <div class="container">
         <h2>Book an appointment</h2>
@@ -215,7 +1102,7 @@
           <form id="appointmentForm" class="card form" novalidate>
             <div class="field">
               <label for="name">Full name</label>
-              <input type="text" id="name" name="name" autocomplete="name" required>
+              <input type="text" id="name" name="name" autocomplete="name" required placeholder="e.g. Ramesh Shrestha">
               <small class="error" data-for="name"></small>
             </div>
             <div class="field">
@@ -275,12 +1162,12 @@
     </section>
 
   </main>
+
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <div class="footer-brand-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-          <!-- UPDATED LOGO -->
-          <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" style="width: 40px; height: 40px; object-fit: contain;">
+        <div class="footer-brand-wrap">
+          <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo">
           <p class="footer-brand" style="margin: 0;">Everest Dental Service Center Pvt Ltd</p>
         </div>
         <p>Simple, gentle dental care for the whole family.</p>
@@ -296,17 +1183,31 @@
       </div>
       <div>
         <p class="footer-title">Visit us</p>
-        <!-- UPDATED ADDRESS & CONTACT -->
         <p>Railway Road, Amar Chowk, Near Laxmi Narayan Party Palace, Birgunj-02, Parsa</p>
-        <p>Sun to Fri: 10:00 am to 6:00 pm</p>
-        <p>Sat: 10:00 am to 3:00 pm</p>
+        <p>Sun to Fri: 10:00 am – 6:00 pm</p>
+        <p>Sat: 10:00 am – 3:00 pm</p>
         <p>+977-51-527343</p>
         <p>sophiabhandari118@gmail.com</p>
       </div>
     </div>
     <p class="footer-bottom container">&copy; <span id="year">2026</span> Everest Dental Service Center Pvt Ltd. All rights reserved.</p>
   </footer>
+
   <script src="js/main.js"></script>
   <script src="js/appointments.js"></script>
+  <script>
+    // Simple mobile nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (toggle && navLinks) {
+        toggle.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+          this.setAttribute('aria-expanded', expanded);
+          navLinks.classList.toggle('show');
+        });
+      }
+    });
+  </script>
 </body>
 </html>

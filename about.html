@@ -7,69 +7,623 @@
   <meta name="description" content="Everest Dental — Your Dental Partner in Birgunj. World-class facilities, expert care by Dr. Manoj Kumar Upadhyay.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  
+  <!-- Beautiful, modern font pairing: Fraunces (display) + Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for subtle icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* Specific styling for the About page Doctor section */
-    .doctor-profile {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 2.5rem;
-      align-items: center;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 2rem;
-      margin-top: 2rem;
-      box-shadow: 0 10px 30px rgba(15, 82, 87, 0.05);
-    }
-    
-    .doctor-photo {
-      width: 100%;
-      max-width: 280px;
-      border-radius: var(--radius);
-      border: 4px solid var(--mint);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-      display: block;
-      margin-inline: auto;
+    /* ===== GLOBAL RESET & DESIGN TOKENS ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .doctor-details h3 {
-      color: var(--teal);
-      font-size: 1.8rem;
-      margin-bottom: 0.2rem;
+    :root {
+      --primary: #0b4d5c;        /* deep teal – professional & dental */
+      --primary-light: #1d6e7e;
+      --accent: #e8f4f8;         /* soft sky */
+      --text-dark: #1e2b32;
+      --text-soft: #3c4b54;
+      --bg-white: #ffffff;
+      --bg-light: #f9fcfd;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 28px rgba(0, 30, 40, 0.08);
+      --shadow-lg: 0 24px 48px rgba(11, 77, 92, 0.12);
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Inter', sans-serif;
     }
-    
-    .doctor-title {
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    h1, h2, h3, .brand-name, .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ===== NAVBAR – BEAUTIFUL & PROFESSIONAL ===== */
+    .site-header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-display);
       font-weight: 700;
-      color: var(--coral);
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: var(--accent);
+      padding: 4px;
+      box-shadow: 0 4px 12px rgba(11, 77, 92, 0.1);
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.3;
+      max-width: 300px;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav-toggle:hover {
+      background: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      padding: 0.4rem 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .btn-small {
+      background: var(--primary);
+      color: white !important;
+      padding: 0.6rem 1.4rem !important;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 6px 16px rgba(11, 77, 92, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-small::after {
+      display: none;
+    }
+
+    .btn-small:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(11, 77, 92, 0.3);
+    }
+
+    /* ===== PAGE BANNER ===== */
+    .page-banner {
+      background: linear-gradient(120deg, #f0f7fa 0%, #e3f0f5 100%);
+      padding: 3.5rem 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(11, 77, 92, 0.08);
+    }
+
+    .page-banner h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-banner .lead {
+      font-size: 1.2rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      font-weight: 400;
+      border-left: 4px solid var(--primary-light);
+      padding-left: 1.2rem;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .section {
+      padding: 2.5rem 0 4rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-content h2 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .about-content p {
+      color: var(--text-soft);
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .about-content strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .about-content .highlight-box {
+      background: var(--bg-light);
+      border-left: 4px solid var(--primary-light);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 1.8rem 0;
+      font-style: italic;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* ===== IMAGE COLLAGE – STUNNING & ANIMATED ===== */
+    .image-collage {
+      position: relative;
+      height: 520px;
+      width: 100%;
+    }
+
+    .collage-item {
+      position: absolute;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      animation: floatIn 0.8s ease forwards;
+      opacity: 0;
+      border: 4px solid white;
+    }
+
+    .collage-item:hover {
+      transform: scale(1.05) translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
+    }
+
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .collage-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Individual positioning and animation delays */
+    .collage-1 {
+      width: 55%;
+      height: 55%;
+      top: 0;
+      left: 0;
+      animation-delay: 0.1s;
+      z-index: 2;
+    }
+
+    .collage-2 {
+      width: 45%;
+      height: 45%;
+      top: 10%;
+      right: 0;
+      animation-delay: 0.25s;
+      z-index: 3;
+    }
+
+    .collage-3 {
+      width: 50%;
+      height: 45%;
+      bottom: 0;
+      left: 10%;
+      animation-delay: 0.4s;
+      z-index: 1;
+    }
+
+    .collage-4 {
+      width: 45%;
+      height: 40%;
+      bottom: 5%;
+      right: 5%;
+      animation-delay: 0.55s;
+      z-index: 4;
+    }
+
+    @keyframes floatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* ===== DOCTOR PROFILE CARD ===== */
+    .doctor-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-md);
+      padding: 2rem 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 77, 92, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      margin-top: 4rem;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .doctor-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .doctor-card-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 8px 20px rgba(11, 77, 92, 0.15);
+      flex-shrink: 0;
+    }
+
+    .doctor-card-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .doctor-card-info .doctor-title {
+      font-weight: 600;
+      color: var(--primary-light);
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .doctor-card-info p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== FOOTER – BEAUTIFUL & ELEGANT ===== */
+    .site-footer {
+      background: linear-gradient(145deg, #0a3f4b 0%, #0f4f5e 100%);
+      color: #d9eef5;
+      padding: 3.5rem 0 1.5rem;
+      margin-top: 2rem;
+      border-top: 4px solid var(--primary-light);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-wrap img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+    }
+
+    .site-footer p {
+      color: #b8d4dd;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: white;
+      font-size: 1.15rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 36px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .site-footer ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .site-footer li a {
+      color: #cfe2e9;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .site-footer li a:hover {
+      color: white;
+      transform: translateX(6px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.8rem;
+      font-size: 0.9rem;
+      color: #9bb8c4;
+      letter-spacing: 0.2px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .about-grid {
+        gap: 3rem;
+      }
+      .image-collage {
+        height: 450px;
+      }
+      .doctor-card {
+        padding: 1.8rem;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .page-banner h1 {
+        font-size: 2.2rem;
+      }
+
+      .brand span {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .image-collage {
+        height: 400px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
     }
 
     @media (max-width: 768px) {
-      .doctor-profile {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 1.5rem;
+      .navbar {
+        flex-wrap: wrap;
+        padding: 0.8rem 1.2rem;
       }
-      .doctor-photo {
-        max-width: 200px;
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2edf2;
+        margin-top: 0.5rem;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+        width: 100%;
+      }
+
+      .btn-small {
+        text-align: center;
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .doctor-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+      }
+
+      .doctor-card-img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .image-collage {
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand span {
+        font-size: 0.9rem;
+        max-width: 180px;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .page-banner h1 {
+        font-size: 1.8rem;
+      }
+
+      .page-banner .lead {
+        font-size: 1rem;
+      }
+
+      .image-collage {
+        height: 300px;
+      }
+
+      .about-content h2 {
+        font-size: 1.8rem;
       }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <nav class="navbar container" aria-label="Main">
+    <nav class="navbar" aria-label="Main">
       <a href="index.html" class="brand" aria-label="Everest Dental home">
-        <!-- UPDATED LOGO -->
-        <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" class="brand-icon" style="width: 40px; height: 40px; object-fit: contain;">
+        <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" class="brand-icon">
         <span>Everest Dental Service Center Pvt Ltd</span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+        <i class="fas fa-bars" style="margin-right: 0.4rem;"></i> Menu
+      </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" class="active" aria-current="page">About us</a></li>
@@ -86,89 +640,57 @@
     <section class="page-banner">
       <div class="container">
         <h1>About Everest Dental</h1>
-        <p class="lead">Your Dental Partner in Birgunj. Committed to your smile 24/7 with world-class facilities and expert care.</p>
+        <p class="lead">Your Dental Partner in Birgunj. Committed to your smile with world-class facilities and expert care.</p>
       </div>
     </section>
 
-    <!-- Our story + promise -->
-    <section class="section">
-      <div class="container two-col">
-        <div>
-          <h2>Our story</h2>
-          <p>Everest Dental Service Center Pvt. Ltd. is not just a clinic; it's a commitment to healthy smiles in Birgunj. We started with a simple idea: everyone deserves <strong>world-class dental care</strong> without fear or high bills. Today, we are proud to be recognized as the <strong>best in Birgunj</strong> for our strict hygiene practices, advanced technology, and patient-first approach.</p>
-          <p>We focus on prevention first. A regular check-up costs far less than a painful emergency, and we are happy to teach you how to keep your teeth strong at home. From the moment you walk in, our goal is to make you feel comfortable, informed, and cared for.</p>
-          <p>No rushed appointments. No hidden costs. Just honest dentistry backed by modern infrastructure.</p>
-        </div>
-        <div class="card">
-          <h3>Our promise</h3>
-          <ul class="check-list">
-            <li>We explain before we treat.</li>
-            <li>We quote the price upfront.</li>
-            <li>We never rush an appointment.</li>
-            <li>We follow up after every treatment.</li>
-            <li>We treat every patient like family.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Values -->
-    <section class="section section-tint">
-      <div class="container">
-        <h2>What we stand for</h2>
-        <p class="section-intro">Three values guide everything we do — from the front desk to the dental chair.</p>
-        <div class="feature-grid">
-          <article class="feature">
-            <h3>Honesty</h3>
-            <p>Clear explanations and upfront pricing. You will never be surprised by a bill.</p>
-          </article>
-          <article class="feature">
-            <h3>Gentleness</h3>
-            <p>We work at your pace. Nervous patients are always welcome here.</p>
-          </article>
-          <article class="feature">
-            <h3>Prevention</h3>
-            <p>We would rather help you avoid problems than fix them later.</p>
-          </article>
-          <article class="feature">
-            <h3>Accessibility</h3>
-            <p>Fair prices and flexible hours so care is within everyone's reach.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team / Doctor Section -->
+    <!-- About Content & Images -->
     <section class="section">
       <div class="container">
-        <h2>Meet the Expert</h2>
-        <p class="section-intro">Led by one of the premier dental surgeons in the Terai region.</p>
-        
-        <!-- Updated Doctor Profile Layout -->
-        <div class="doctor-profile">
-          <div>
-            <!-- Doctor Image -->
-            <img src="./IMG-20261011-WA0050.jpg" alt="Dr. Manoj Kr. Upadhyay" class="doctor-photo">
+        <div class="about-grid">
+          
+          <!-- Left: Content -->
+          <div class="about-content">
+            <h2>Welcome to Everest Dental Service Center</h2>
+            <p>Established in <strong>2060 BS</strong>, Everest Dental Service Center has been a trusted name in Birgunj for comprehensive dental care. We combine modern technology with a gentle, patient-first approach to ensure every visit is comfortable and effective.</p>
+            
+            <p>Our clinic is led by <strong>Dr. Manoj Kr. Upadhyay</strong>, a highly respected Endodontist specializing in complex root canal treatments, dental trauma, and restorative care. Under his guidance, we have grown into a full-service dental center equipped with advanced digital treatment rooms and in-house pharmacy facilities.</p>
+            
+            <div class="highlight-box">
+              "We believe that a healthy smile is an important part of overall well-being. Our goal is to provide ethical, transparent, and gentle care to every patient who walks through our door."
+            </div>
+            
+            <p>Whether you need a routine check-up, cosmetic enhancement, or emergency treatment, our team is here to help you achieve and maintain optimal oral health.</p>
           </div>
-          <div class="doctor-details">
+
+          <!-- Right: Animated Image Collage -->
+          <div class="image-collage">
+            <div class="collage-item collage-1">
+              <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" alt="Dentist examining patient">
+            </div>
+            <div class="collage-item collage-2">
+              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop" alt="Dental cleaning">
+            </div>
+            <div class="collage-item collage-3">
+              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop" alt="Root canal treatment">
+            </div>
+            <div class="collage-item collage-4">
+              <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=2070&auto=format&fit=crop" alt="Orthodontic consultation">
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Doctor Profile Card -->
+        <div class="doctor-card">
+          <img src="./IMG-20261011-WA0050.jpg" alt="Dr. Manoj Kr. Upadhyay" class="doctor-card-img">
+          <div class="doctor-card-info">
             <h3>Dr. Manoj Kr. Upadhyay</h3>
-            <span class="doctor-title">B.S.C., B.D.S., M.D.S. — Director & Lead Surgeon</span>
-            <p>Dr. Upadhyay is highly regarded as an expert Endodontist, specializing in complex root canal treatments (RCT), managing dental trauma, and saving damaged tooth structures. Under his leadership, Everest Dental has become a comprehensive, single-point dental center equipped with advanced digital treatment rooms and in-house pharmacy facilities.</p>
-            <p>He is dedicated to providing ethical, transparent, and gentle care to every patient who walks through the door.</p>
-            <a href="index.html#appointment" class="btn btn-small" style="margin-top: 1rem;">Book a Consultation</a>
+            <span class="doctor-title">B.S.C., B.D.S., M.D.S. — Director</span>
+            <!-- <p>Dr. Upadhyay is an expert Endodontist specializing in complex root canal treatments, dental trauma management, and restorative dentistry. He leads our team with a commitment to ethical, transparent, and gentle care.</p> -->
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CTA -->
-    <section class="section">
-      <div class="container">
-        <div class="cta-box">
-          <h2>Ready to visit us?</h2>
-          <p>Book a general check-up and let's take care of your smile together.</p>
-          <a href="index.html#appointment" class="btn">Book appointment</a>
-        </div>
       </div>
     </section>
 
@@ -177,9 +699,8 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <div class="footer-brand-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-          <!-- UPDATED LOGO -->
-          <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" style="width: 40px; height: 40px; object-fit: contain;">
+        <div class="footer-brand-wrap">
+          <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo">
           <p class="footer-brand" style="margin: 0;">Everest Dental Service Center Pvt Ltd</p>
         </div>
         <p>Simple, gentle dental care for the whole family.</p>
@@ -195,10 +716,9 @@
       </div>
       <div>
         <p class="footer-title">Visit us</p>
-        <!-- UPDATED ADDRESS & CONTACT -->
         <p>Railway Road, Amar Chowk, Near Laxmi Narayan Party Palace, Birgunj-02, Parsa</p>
-        <p>Sun to Fri: 10:00 am to 6:00 pm</p>
-        <p>Sat: 10:00 am to 3:00 pm</p>
+        <p>Sun to Fri: 10:00 am – 6:00 pm</p>
+        <p>Sat: 10:00 am – 3:00 pm</p>
         <p>+977-51-527343</p>
         <p>sophiabhandari118@gmail.com</p>
       </div>
@@ -207,5 +727,19 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // Simple mobile nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (toggle && navLinks) {
+        toggle.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+          this.setAttribute('aria-expanded', expanded);
+          navLinks.classList.toggle('show');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
