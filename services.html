@@ -7,18 +7,576 @@
   <meta name="description" content="Everest Dental — simple, caring dental health services. Explore check-ups, cleaning, fillings, root canals, braces, and whitening.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Beautiful, modern font pairing: Fraunces (display) + Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for subtle icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== GLOBAL RESET & DESIGN TOKENS ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0b4d5c;        /* deep teal – professional & dental */
+      --primary-light: #1d6e7e;
+      --accent: #e8f4f8;         /* soft sky */
+      --text-dark: #1e2b32;
+      --text-soft: #3c4b54;
+      --bg-white: #ffffff;
+      --bg-light: #f9fcfd;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 28px rgba(0, 30, 40, 0.08);
+      --shadow-lg: 0 24px 48px rgba(11, 77, 92, 0.12);
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    h1, h2, h3, .brand-name, .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ===== NAVBAR – BEAUTIFUL & PROFESSIONAL ===== */
+    .site-header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: var(--accent);
+      padding: 4px;
+      box-shadow: 0 4px 12px rgba(11, 77, 92, 0.1);
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.3;
+      max-width: 300px;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav-toggle:hover {
+      background: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      padding: 0.4rem 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .btn-small {
+      background: var(--primary);
+      color: white !important;
+      padding: 0.6rem 1.4rem !important;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 6px 16px rgba(11, 77, 92, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-small::after {
+      display: none;
+    }
+
+    .btn-small:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(11, 77, 92, 0.3);
+    }
+
+    /* ===== PAGE BANNER ===== */
+    .page-banner {
+      background: linear-gradient(120deg, #f0f7fa 0%, #e3f0f5 100%);
+      padding: 3.5rem 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(11, 77, 92, 0.08);
+    }
+
+    .page-banner h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-banner .lead {
+      font-size: 1.2rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      font-weight: 400;
+      border-left: 4px solid var(--primary-light);
+      padding-left: 1.2rem;
+    }
+
+    /* ===== SERVICES SECTION ===== */
+    .section {
+      padding: 2.5rem 0 4rem;
+    }
+
+    .section-tint {
+      background: var(--bg-light);
+    }
+
+    .section-intro {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 700px;
+      margin-bottom: 2.5rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(11, 77, 92, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(11, 77, 92, 0.15);
+    }
+
+    .service-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-card-img {
+      transform: scale(1.03);
+    }
+
+    .service-card-body {
+      padding: 1.8rem 1.6rem 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .service-card-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card-body p {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature {
+      background: var(--bg-white);
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--primary-light);
+      transition: transform 0.25s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .feature p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    /* ===== CTA BOX ===== */
+    .cta-box {
+      background: linear-gradient(145deg, #0b4d5c 0%, #1d6e7e 100%);
+      border-radius: var(--radius-md);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .cta-box h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: white;
+    }
+
+    .cta-box p {
+      font-size: 1.1rem;
+      color: #cfe2e9;
+      margin-bottom: 1.8rem;
+    }
+
+    .cta-box .btn {
+      background: white;
+      color: var(--primary);
+      padding: 0.9rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s;
+      display: inline-block;
+    }
+
+    .cta-box .btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== FOOTER – BEAUTIFUL & ELEGANT ===== */
+    .site-footer {
+      background: linear-gradient(145deg, #0a3f4b 0%, #0f4f5e 100%);
+      color: #d9eef5;
+      padding: 3.5rem 0 1.5rem;
+      margin-top: 2rem;
+      border-top: 4px solid var(--primary-light);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-wrap img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+    }
+
+    .site-footer p {
+      color: #b8d4dd;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: white;
+      font-size: 1.15rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 36px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .site-footer ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .site-footer li a {
+      color: #cfe2e9;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .site-footer li a:hover {
+      color: white;
+      transform: translateX(6px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.8rem;
+      font-size: 0.9rem;
+      color: #9bb8c4;
+      letter-spacing: 0.2px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .page-banner h1 {
+        font-size: 2.2rem;
+      }
+
+      .brand span {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-wrap: wrap;
+        padding: 0.8rem 1.2rem;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2edf2;
+        margin-top: 0.5rem;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+        width: 100%;
+      }
+
+      .btn-small {
+        text-align: center;
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .cta-box {
+        padding: 2.2rem 1.5rem;
+      }
+
+      .cta-box h2 {
+        font-size: 1.7rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand span {
+        font-size: 0.9rem;
+        max-width: 180px;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .page-banner h1 {
+        font-size: 1.8rem;
+      }
+
+      .page-banner .lead {
+        font-size: 1rem;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card-img {
+        height: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
-    <nav class="navbar container" aria-label="Main">
+    <nav class="navbar" aria-label="Main">
       <a href="index.html" class="brand" aria-label="Everest Dental home">
-        <!-- UPDATED LOGO -->
-        <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" class="brand-icon" style="width: 40px; height: 40px; object-fit: contain;">
+        <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" class="brand-icon">
         <span>Everest Dental Service Center Pvt Ltd</span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+        <i class="fas fa-bars" style="margin-right: 0.4rem;"></i> Menu
+      </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About us</a></li>
@@ -44,30 +602,55 @@
       <div class="container">
         <p class="section-intro">Transparent pricing, gentle care, and modern techniques. Every treatment starts with a conversation.</p>
         <div class="service-grid">
-          <article class="service">
-            <h3>General check-up</h3>
-            <p>A full exam of teeth and gums, with advice tailored to you.</p>
+          
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" alt="Dentist examining a patient's teeth" class="service-card-img">
+            <div class="service-card-body">
+              <h3>General Check-up</h3>
+              <p>A full exam of teeth and gums, with advice tailored to you. Early detection is key to maintaining a healthy smile.</p>
+            </div>
           </article>
-          <article class="service">
-            <h3>Teeth cleaning</h3>
-            <p>Removes plaque and tartar so your gums stay healthy and fresh.</p>
+
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2070&auto=format&fit=crop" alt="Dental cleaning procedure" class="service-card-img">
+            <div class="service-card-body">
+              <h3>Teeth Cleaning</h3>
+              <p>Removes plaque and tartar so your gums stay healthy and fresh. A professional clean helps prevent gum disease.</p>
+            </div>
           </article>
-          <article class="service">
-            <h3>Cavity filling</h3>
-            <p>Tooth-coloured fillings that look natural and last for years.</p>
+
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=2070&auto=format&fit=crop" alt="Dental filling procedure" class="service-card-img">
+            <div class="service-card-body">
+              <h3>Cavity Filling</h3>
+              <p>Tooth-coloured fillings that look natural and last for years. We restore your tooth's function and appearance.</p>
+            </div>
           </article>
-          <article class="service">
-            <h3>Root canal</h3>
-            <p>Saves a badly infected tooth with a comfortable, careful procedure.</p>
+
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop" alt="Root canal treatment" class="service-card-img">
+            <div class="service-card-body">
+              <h3>Root Canal</h3>
+              <p>Saves a badly infected tooth with a comfortable, careful procedure. We remove the infection and protect your tooth.</p>
+            </div>
           </article>
-          <article class="service">
-            <h3>Braces consultation</h3>
-            <p>Check if braces or aligners are right for you, with a clear plan.</p>
+
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=2070&auto=format&fit=crop" alt="Orthodontic braces consultation" class="service-card-img">
+            <div class="service-card-body">
+              <h3>Braces Consultation</h3>
+              <p>Check if braces or aligners are right for you, with a clear plan. We offer traditional and modern orthodontic options.</p>
+            </div>
           </article>
-          <article class="service">
-            <h3>Teeth whitening</h3>
-            <p>Safe, professional whitening for a brighter smile in one visit.</p>
+
+          <article class="service-card">
+            <img src="https://images.unsplash.com/photo-1593022356770-9c5f2e3b1c6c?q=80&w=2070&auto=format&fit=crop" alt="Teeth whitening treatment" class="service-card-img">
+            <div class="service-card-body">
+              <h3>Teeth Whitening</h3>
+              <p>Safe, professional whitening for a brighter smile in one visit. We use gentle, effective whitening systems.</p>
+            </div>
           </article>
+
         </div>
       </div>
     </section>
@@ -114,9 +697,8 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <div class="footer-brand-wrap" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-          <!-- UPDATED LOGO -->
-          <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo" style="width: 40px; height: 40px; object-fit: contain;">
+        <div class="footer-brand-wrap">
+          <img src="./IMG-20261011-WA0049.jpg" alt="Everest Dental Logo">
           <p class="footer-brand" style="margin: 0;">Everest Dental Service Center Pvt Ltd</p>
         </div>
         <p>Simple, gentle dental care for the whole family.</p>
@@ -132,10 +714,9 @@
       </div>
       <div>
         <p class="footer-title">Visit us</p>
-        <!-- UPDATED ADDRESS & CONTACT -->
         <p>Railway Road, Amar Chowk, Near Laxmi Narayan Party Palace, Birgunj-02, Parsa</p>
-        <p>Sun to Fri: 10:00 am to 6:00 pm</p>
-        <p>Sat: 10:00 am to 3:00 pm</p>
+        <p>Sun to Fri: 10:00 am – 6:00 pm</p>
+        <p>Sat: 10:00 am – 3:00 pm</p>
         <p>+977-51-527343</p>
         <p>sophiabhandari118@gmail.com</p>
       </div>
@@ -144,5 +725,19 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // Simple mobile nav toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (toggle && navLinks) {
+        toggle.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+          this.setAttribute('aria-expanded', expanded);
+          navLinks.classList.toggle('show');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
