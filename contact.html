@@ -217,16 +217,9 @@
       padding-left: 1.2rem;
     }
 
-    /* ===== TWO COLUMN LAYOUT ===== */
+    /* ===== SECTION LAYOUT ===== */
     .section {
       padding: 2.5rem 0 4rem;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
     }
 
     /* ===== CLINIC DETAILS – elegant list ===== */
@@ -283,99 +276,6 @@
       height: 280px;
       border: 0;
       transition: transform 0.3s;
-    }
-
-    /* ===== FORM CARD – clean, professional ===== */
-    .card {
-      background: var(--bg-white);
-      border-radius: var(--radius-md);
-      padding: 2rem 2rem 1.8rem;
-      box-shadow: var(--shadow-md);
-      border: 1px solid rgba(11, 77, 92, 0.08);
-    }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .field label {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--primary);
-      letter-spacing: -0.01em;
-    }
-
-    .field input,
-    .field textarea {
-      font-family: var(--font-body);
-      padding: 0.9rem 1.2rem;
-      border: 1.5px solid #d9e5ea;
-      border-radius: 60px;
-      font-size: 1rem;
-      background: var(--bg-light);
-      transition: all 0.2s;
-      outline: none;
-      resize: vertical;
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: var(--primary-light);
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(11, 77, 92, 0.08);
-    }
-
-    .field textarea {
-      border-radius: 24px;
-      min-height: 110px;
-    }
-
-    .field .error {
-      font-size: 0.8rem;
-      color: #c0392b;
-      margin-top: 0.2rem;
-      padding-left: 0.8rem;
-    }
-
-    .btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 1rem 1.8rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.25s;
-      box-shadow: 0 8px 18px rgba(11, 77, 92, 0.2);
-      letter-spacing: 0.3px;
-    }
-
-    .btn-block {
-      width: 100%;
-      margin-top: 0.5rem;
-    }
-
-    .btn:hover {
-      background: var(--primary-light);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(11, 77, 92, 0.3);
-    }
-
-    .form-status {
-      font-size: 0.95rem;
-      min-height: 1.5rem;
-      color: var(--primary);
-      text-align: center;
     }
 
     /* ===== FOOTER – BEAUTIFUL & ELEGANT ===== */
@@ -475,11 +375,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
-      .two-col {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
       .page-banner h1 {
         font-size: 2.2rem;
       }
@@ -546,10 +441,6 @@
         grid-template-columns: 1fr;
         gap: 2rem;
       }
-
-      .card {
-        padding: 1.5rem;
-      }
     }
 
     @media (max-width: 480px) {
@@ -602,47 +493,26 @@
     </section>
 
     <section class="section">
-      <div class="container two-col">
-        <div>
-          <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);">Clinic details</h2>
-          <ul class="contact-list">
-            <!-- UPDATED DETAILS -->
-            <li><strong>Address</strong><span>Railway Road, Amar Chowk, Near Laxmi Narayan Party Palace, Birgunj-02, Parsa</span></li>
-            <li><strong>Phone</strong><span>+977-51-527343</span></li>
-            <li><strong>Mobile / WhatsApp</strong><span>+977-9855023492</span></li>
-            <li><strong>Email</strong><span>sophiabhandari118@gmail.com</span></li>
-            <li><strong>Hours (Sun–Fri)</strong><span>10:00 am – 6:00 pm</span></li>
-            <li><strong>Hours (Saturday)</strong><span>10:00 am – 3:00 pm</span></li>
-          </ul>
+      <div class="container">
+        <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);">Clinic details</h2>
+        <ul class="contact-list">
+          <!-- UPDATED DETAILS -->
+          <li><strong>Address</strong><span>Railway Road, Amar Chowk, Near Laxmi Narayan Party Palace, Birgunj-02, Parsa</span></li>
+          <li><strong>Phone</strong><span>+977-51-527343</span></li>
+          <li><strong>Mobile / WhatsApp</strong><span>+977-9855023492</span></li>
+          <li><strong>Email</strong><span>sophiabhandari118@gmail.com</span></li>
+          <li><strong>Hours (Sun–Fri)</strong><span>10:00 am – 6:00 pm</span></li>
+          <li><strong>Hours (Saturday)</strong><span>10:00 am – 3:00 pm</span></li>
+        </ul>
 
-          <div class="map-wrap" style="margin-top: 2rem;">
-        <iframe 
-        title="Everest Dental location on Google Maps"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.8675032117153!2d84.87235057523954!3d27.002740776593722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3993550026da6817%3A0x7fe75b4ad01d4dde!2sEverest%20Dental%20Survice!5e0!3m2!1sen!2sin!4v1791916209293!5m2!1sen!2sin" 
-        width="100%" height="280" style="border:0;"
-        loading="lazy" allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+        <div class="map-wrap" style="margin-top: 2rem;">
+          <iframe 
+            title="Everest Dental location on Google Maps"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3554.8675032117153!2d84.87235057523954!3d27.002740776593722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3993550026da6817%3A0x7fe75b4ad01d4dde!2sEverest%20Dental%20Survice!5e0!3m2!1sen!2sin!4v1791916209293!5m2!1sen!2sin" 
+            width="100%" height="280" style="border:0;"
+            loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <form id="contactForm" class="card form" novalidate>
-          <div class="field">
-            <label for="cname">Your name</label>
-            <input type="text" id="cname" required placeholder="e.g. Ramesh Shrestha">
-            <small class="error" data-for="cname"></small>
-          </div>
-          <div class="field">
-            <label for="cemail">Email</label>
-            <input type="email" id="cemail" required placeholder="you@example.com">
-            <small class="error" data-for="cemail"></small>
-          </div>
-          <div class="field">
-            <label for="cmessage">Message</label>
-            <textarea id="cmessage" rows="4" required placeholder="How can we help you?"></textarea>
-            <small class="error" data-for="cmessage"></small>
-          </div>
-          <button type="submit" class="btn btn-block">Send message</button>
-          <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
-        </form>
       </div>
     </section>
 
@@ -678,7 +548,6 @@
     <p class="footer-bottom container">&copy; <span id="year">2026</span> Everest Dental Service Center Pvt Ltd. All rights reserved.</p>
   </footer>
   <script src="js/main.js"></script>
-  <script src="js/contact.js"></script>
   <script>
     // Simple mobile nav toggle (in case js/main.js doesn't already handle it)
     document.addEventListener('DOMContentLoaded', function() {
